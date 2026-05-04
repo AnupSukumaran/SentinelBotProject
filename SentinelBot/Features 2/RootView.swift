@@ -7,7 +7,7 @@
 //
 //  Tab layout:
 //    0  Connection  — Phase C  ✅
-//    1  Control     — Phase D  (placeholder)
+//    1  Control     — Phase D  ✅
 //    2  Telemetry   — Phase E  (placeholder)
 //    3  Settings    — Phase C  ✅
 //
@@ -28,11 +28,9 @@ struct RootView: View {
                 Label("Connection", systemImage: "wifi")
             }
 
-            // Phase D placeholder
-            PlaceholderTabView(
-                icon: "gamecontroller.fill",
-                title: "Control",
-                subtitle: "Joystick & mode controls arrive in Phase D."
+            ControlView(
+                commandService: container.commandService,
+                mqttService: container.mqttService
             )
             .tabItem {
                 Label("Control", systemImage: "gamecontroller.fill")

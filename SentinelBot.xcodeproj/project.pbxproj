@@ -37,6 +37,8 @@
 		F503D9A82FA8A057004862E6 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9A72FA8A057004862E6 /* ConnectionView.swift */; };
 		F503D9AA2FA8A070004862E6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9A92FA8A070004862E6 /* SettingsView.swift */; };
 		F503D9AC2FA8A080004862E6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9AB2FA8A080004862E6 /* RootView.swift */; };
+		F503D9AF2FA8A31B004862E6 /* ControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9AE2FA8A31B004862E6 /* ControlViewModel.swift */; };
+		F503D9B12FA8A33E004862E6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B02FA8A33E004862E6 /* ControlView.swift */; };
 		F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,8 @@
 		F503D9A72FA8A057004862E6 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		F503D9A92FA8A070004862E6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F503D9AB2FA8A080004862E6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F503D9AE2FA8A31B004862E6 /* ControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlViewModel.swift; sourceTree = "<group>"; };
+		F503D9B02FA8A33E004862E6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +251,7 @@
 				F503D9A12FA8A02B004862E6 /* Connection */,
 				F503D9A22FA8A02B004862E6 /* Settings */,
 				F503D9AB2FA8A080004862E6 /* RootView.swift */,
+				F503D9AD2FA8A307004862E6 /* Control */,
 			);
 			path = "Features 2";
 			sourceTree = "<group>";
@@ -267,6 +272,15 @@
 				F503D9A92FA8A070004862E6 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		F503D9AD2FA8A307004862E6 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				F503D9AE2FA8A31B004862E6 /* ControlViewModel.swift */,
+				F503D9B02FA8A33E004862E6 /* ControlView.swift */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,8 +408,10 @@
 				C3AFDD83C05241658F068A12 /* Constants.swift in Sources */,
 				86340F56B3C85BC47F24480A /* HapticFeedback.swift in Sources */,
 				6B389656024DDD7ADDD0225D /* Logger.swift in Sources */,
+				F503D9B12FA8A33E004862E6 /* ControlView.swift in Sources */,
 				9EBAE8BD69B4CC5DBB5E2D01 /* SentinelBotApp.swift in Sources */,
 				F503D9A62FA8A041004862E6 /* SettingsViewModel.swift in Sources */,
+				F503D9AF2FA8A31B004862E6 /* ControlViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
