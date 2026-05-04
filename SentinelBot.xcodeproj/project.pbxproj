@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		089B824A8CDA02C518093818 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1290925F36823714FDA16DEE /* Color+Theme.swift */; };
+		0D3305984CF7D1537C704189 /* MockMQTTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F6C77B80A36E11A36ED042 /* MockMQTTService.swift */; };
+		0FE0C58EFD59BEA9F814F50A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8119A4784A182D847E337D77 /* Assets.xcassets */; };
+		1FB83C66D53609C3165365C0 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7D6ECC9F878657E93428E /* ModelTests.swift */; };
+		39A7741E60EF56D8B5BA2BBE /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B93E756E4208596526038 /* PersistenceService.swift */; };
+		3FC8C537EBD38728DBA1C921 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 150825DD2797ADF8B33695B4 /* Preview Assets.xcassets */; };
+		532C09B838720A46812CDD29 /* SentinelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32F4995F9B71762F72AE7B /* SentinelError.swift */; };
+		6B389656024DDD7ADDD0225D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A84032D105D59A9861931 /* Logger.swift */; };
+		86340F56B3C85BC47F24480A /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15917C4CE67FE45E4A428E89 /* HapticFeedback.swift */; };
+		8D127977B76ED39CD9657491 /* MQTTServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0CA8DD6833265E8F0B94C0 /* MQTTServiceProtocol.swift */; };
+		9CEBC21F503F6AA831166DA4 /* BrokerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0988E9CFA8957F972742EE91 /* BrokerConfig.swift */; };
+		9EBAE8BD69B4CC5DBB5E2D01 /* SentinelBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E654838EF7C0CD8B631912 /* SentinelBotApp.swift */; };
+		BAF95B0E503E38525D92387D /* TelemetryServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8216381EF458CF7D3A13C8 /* TelemetryServiceProtocol.swift */; };
+		C3AFDD83C05241658F068A12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070A628D51F4E3A5711E62A7 /* Constants.swift */; };
+		D3A22BFC009F4985F9AE39FD /* RobotMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16709F66EE254D593C89EEE8 /* RobotMode.swift */; };
+		D8A5BE54CD0FD1EBA5F1F6EC /* RobotCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B3706184946F2268B49AC /* RobotCommand.swift */; };
+		DF508C6F2F6710F399A017ED /* ConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654A90A60DFEB34C2BE5C2A /* ConnectionState.swift */; };
+		E7108BCB44AA300BEDD6AB85 /* PersistenceServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E181C6A5271C21A1E923B /* PersistenceServiceProtocol.swift */; };
+		F075BFE7BA7CC46A8B9BBF80 /* TelemetryPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883D75236FD0C9107B059C81 /* TelemetryPacket.swift */; };
+		F503D9942FA88A03004862E6 /* CocoaMQTT in Frameworks */ = {isa = PBXBuildFile; productRef = F503D9932FA88A03004862E6 /* CocoaMQTT */; };
+		F503D9962FA88A03004862E6 /* CocoaMQTTWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = F503D9952FA88A03004862E6 /* CocoaMQTTWebSocket */; };
+		F503D9982FA88CA4004862E6 /* MQTTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9972FA88CA4004862E6 /* MQTTService.swift */; };
+		F503D99A2FA88CBA004862E6 /* CommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9992FA88CBA004862E6 /* CommandService.swift */; };
+		F503D99C2FA88CD5004862E6 /* TelemetryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D99B2FA88CD5004862E6 /* TelemetryService.swift */; };
+		F503D99F2FA88D62004862E6 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D99E2FA88D62004862E6 /* ServiceTests.swift */; };
+		F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5208C6E5E56858B33C39B547 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B998ECBB648FCAC40794CFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29C7B681C8D62CBAC94D51C0;
+			remoteInfo = SentinelBot;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		070A628D51F4E3A5711E62A7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0988E9CFA8957F972742EE91 /* BrokerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokerConfig.swift; sourceTree = "<group>"; };
+		127A84032D105D59A9861931 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1290925F36823714FDA16DEE /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		150825DD2797ADF8B33695B4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15917C4CE67FE45E4A428E89 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
+		16709F66EE254D593C89EEE8 /* RobotMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotMode.swift; sourceTree = "<group>"; };
+		2D1B93E756E4208596526038 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		3C8216381EF458CF7D3A13C8 /* TelemetryServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryServiceProtocol.swift; sourceTree = "<group>"; };
+		4C0CA8DD6833265E8F0B94C0 /* MQTTServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTServiceProtocol.swift; sourceTree = "<group>"; };
+		4F7B3706184946F2268B49AC /* RobotCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotCommand.swift; sourceTree = "<group>"; };
+		5AC7D6ECC9F878657E93428E /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		73F6C77B80A36E11A36ED042 /* MockMQTTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMQTTService.swift; sourceTree = "<group>"; };
+		8119A4784A182D847E337D77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		883D75236FD0C9107B059C81 /* TelemetryPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryPacket.swift; sourceTree = "<group>"; };
+		9B32F4995F9B71762F72AE7B /* SentinelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentinelError.swift; sourceTree = "<group>"; };
+		9F0E181C6A5271C21A1E923B /* PersistenceServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceServiceProtocol.swift; sourceTree = "<group>"; };
+		AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandServiceProtocol.swift; sourceTree = "<group>"; };
+		B6CDB6E5D160E013280D3C68 /* SentinelBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SentinelBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E02A90D9643568EA39115CFB /* SentinelBotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SentinelBotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0E654838EF7C0CD8B631912 /* SentinelBotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentinelBotApp.swift; sourceTree = "<group>"; };
+		E654A90A60DFEB34C2BE5C2A /* ConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionState.swift; sourceTree = "<group>"; };
+		F503D9972FA88CA4004862E6 /* MQTTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTService.swift; sourceTree = "<group>"; };
+		F503D9992FA88CBA004862E6 /* CommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandService.swift; sourceTree = "<group>"; };
+		F503D99B2FA88CD5004862E6 /* TelemetryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryService.swift; sourceTree = "<group>"; };
+		F503D99E2FA88D62004862E6 /* ServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F001BC2AF9EB5498B3360756 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F503D9962FA88A03004862E6 /* CocoaMQTTWebSocket in Frameworks */,
+				F503D9942FA88A03004862E6 /* CocoaMQTT in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F115AF690239BFBFCB7B4DE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15E4DD32F636311D9EDD87A0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8119A4784A182D847E337D77 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1B0D826218D91217038CB1B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */,
+				4C0CA8DD6833265E8F0B94C0 /* MQTTServiceProtocol.swift */,
+				2D1B93E756E4208596526038 /* PersistenceService.swift */,
+				9F0E181C6A5271C21A1E923B /* PersistenceServiceProtocol.swift */,
+				3C8216381EF458CF7D3A13C8 /* TelemetryServiceProtocol.swift */,
+				F503D9972FA88CA4004862E6 /* MQTTService.swift */,
+				F503D9992FA88CBA004862E6 /* CommandService.swift */,
+				F503D99B2FA88CD5004862E6 /* TelemetryService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1D9176F4FB3479DE9156FAB4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				070A628D51F4E3A5711E62A7 /* Constants.swift */,
+				15917C4CE67FE45E4A428E89 /* HapticFeedback.swift */,
+				127A84032D105D59A9861931 /* Logger.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2D5A32615FB362B0E06461F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0988E9CFA8957F972742EE91 /* BrokerConfig.swift */,
+				E654A90A60DFEB34C2BE5C2A /* ConnectionState.swift */,
+				4F7B3706184946F2268B49AC /* RobotCommand.swift */,
+				16709F66EE254D593C89EEE8 /* RobotMode.swift */,
+				9B32F4995F9B71762F72AE7B /* SentinelError.swift */,
+				883D75236FD0C9107B059C81 /* TelemetryPacket.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		332996A023077F3E82C691D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1290925F36823714FDA16DEE /* Color+Theme.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5151B46607EBC8890D8DFCC2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6CDB6E5D160E013280D3C68 /* SentinelBot.app */,
+				E02A90D9643568EA39115CFB /* SentinelBotTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70CFC1DCFB0E78AC45A625D9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				73F6C77B80A36E11A36ED042 /* MockMQTTService.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		7F4164AF44334E03103ED516 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5AC7D6ECC9F878657E93428E /* ModelTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8048D0B8D4212CE62C05384E /* SentinelBotTests */ = {
+			isa = PBXGroup;
+			children = (
+				70CFC1DCFB0E78AC45A625D9 /* Mocks */,
+				7F4164AF44334E03103ED516 /* Models */,
+				F503D99D2FA88D18004862E6 /* Services 2 */,
+			);
+			path = SentinelBotTests;
+			sourceTree = "<group>";
+		};
+		89CD727628C5FB4A6D51BC0A /* SentinelBot */ = {
+			isa = PBXGroup;
+			children = (
+				E820644107D9BA32A449ED0F /* Core */,
+				E0E654838EF7C0CD8B631912 /* SentinelBotApp.swift */,
+				15E4DD32F636311D9EDD87A0 /* Resources */,
+				BB0E4519B6329286D8D06DC0 /* Preview Content */,
+			);
+			path = SentinelBot;
+			sourceTree = "<group>";
+		};
+		AB5986A486F0011DC833B4C6 = {
+			isa = PBXGroup;
+			children = (
+				89CD727628C5FB4A6D51BC0A /* SentinelBot */,
+				8048D0B8D4212CE62C05384E /* SentinelBotTests */,
+				5151B46607EBC8890D8DFCC2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB0E4519B6329286D8D06DC0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				150825DD2797ADF8B33695B4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E820644107D9BA32A449ED0F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				332996A023077F3E82C691D7 /* Extensions */,
+				2D5A32615FB362B0E06461F7 /* Models */,
+				1B0D826218D91217038CB1B4 /* Services */,
+				1D9176F4FB3479DE9156FAB4 /* Utilities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F503D99D2FA88D18004862E6 /* Services 2 */ = {
+			isa = PBXGroup;
+			children = (
+				F503D99E2FA88D62004862E6 /* ServiceTests.swift */,
+			);
+			path = "Services 2";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29C7B681C8D62CBAC94D51C0 /* SentinelBot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA3EEBD563C366817E5EF3E5 /* Build configuration list for PBXNativeTarget "SentinelBot" */;
+			buildPhases = (
+				8682261519D15BD64A9E5D31 /* Sources */,
+				F001BC2AF9EB5498B3360756 /* Frameworks */,
+				E28FAD8F60ECDED9B4AD087A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SentinelBot;
+			productName = SentinelBot;
+			productReference = B6CDB6E5D160E013280D3C68 /* SentinelBot.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7EC8F98B7A265120217712DE /* SentinelBotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72736DF7C420B150E65C33CB /* Build configuration list for PBXNativeTarget "SentinelBotTests" */;
+			buildPhases = (
+				B6F43314D0693B2B792DAE17 /* Sources */,
+				F115AF690239BFBFCB7B4DE6 /* Frameworks */,
+				2BD6B9B82414E6AB1198F133 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5CD84C5922344B6F5AD8279E /* PBXTargetDependency */,
+			);
+			name = SentinelBotTests;
+			productName = SentinelBotTests;
+			productReference = E02A90D9643568EA39115CFB /* SentinelBotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5B998ECBB648FCAC40794CFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					29C7B681C8D62CBAC94D51C0 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					7EC8F98B7A265120217712DE = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 29C7B681C8D62CBAC94D51C0;
+					};
+				};
+			};
+			buildConfigurationList = 32BF3243C9D0AC392B1CFBA3 /* Build configuration list for PBXProject "SentinelBot" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB5986A486F0011DC833B4C6;
+			packageReferences = (
+				F503D9922FA88A03004862E6 /* XCRemoteSwiftPackageReference "CocoaMQTT" */,
+			);
+			productRefGroup = 5151B46607EBC8890D8DFCC2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29C7B681C8D62CBAC94D51C0 /* SentinelBot */,
+				7EC8F98B7A265120217712DE /* SentinelBotTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BD6B9B82414E6AB1198F133 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E28FAD8F60ECDED9B4AD087A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FC8C537EBD38728DBA1C921 /* Preview Assets.xcassets in Resources */,
+				0FE0C58EFD59BEA9F814F50A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8682261519D15BD64A9E5D31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089B824A8CDA02C518093818 /* Color+Theme.swift in Sources */,
+				9CEBC21F503F6AA831166DA4 /* BrokerConfig.swift in Sources */,
+				DF508C6F2F6710F399A017ED /* ConnectionState.swift in Sources */,
+				D8A5BE54CD0FD1EBA5F1F6EC /* RobotCommand.swift in Sources */,
+				D3A22BFC009F4985F9AE39FD /* RobotMode.swift in Sources */,
+				532C09B838720A46812CDD29 /* SentinelError.swift in Sources */,
+				F075BFE7BA7CC46A8B9BBF80 /* TelemetryPacket.swift in Sources */,
+				F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */,
+				8D127977B76ED39CD9657491 /* MQTTServiceProtocol.swift in Sources */,
+				F503D99C2FA88CD5004862E6 /* TelemetryService.swift in Sources */,
+				39A7741E60EF56D8B5BA2BBE /* PersistenceService.swift in Sources */,
+				E7108BCB44AA300BEDD6AB85 /* PersistenceServiceProtocol.swift in Sources */,
+				F503D99A2FA88CBA004862E6 /* CommandService.swift in Sources */,
+				BAF95B0E503E38525D92387D /* TelemetryServiceProtocol.swift in Sources */,
+				F503D9982FA88CA4004862E6 /* MQTTService.swift in Sources */,
+				C3AFDD83C05241658F068A12 /* Constants.swift in Sources */,
+				86340F56B3C85BC47F24480A /* HapticFeedback.swift in Sources */,
+				6B389656024DDD7ADDD0225D /* Logger.swift in Sources */,
+				9EBAE8BD69B4CC5DBB5E2D01 /* SentinelBotApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6F43314D0693B2B792DAE17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D3305984CF7D1537C704189 /* MockMQTTService.swift in Sources */,
+				F503D99F2FA88D62004862E6 /* ServiceTests.swift in Sources */,
+				1FB83C66D53609C3165365C0 /* ModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5CD84C5922344B6F5AD8279E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29C7B681C8D62CBAC94D51C0 /* SentinelBot */;
+			targetProxy = 5208C6E5E56858B33C39B547 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		113ED8075015BAFA3B7CD074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D963K3K43B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SentinelBot.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SentinelBot";
+			};
+			name = Release;
+		};
+		7B9F494FD7BD4F9B586B654D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SentinelBot/Preview Content\"";
+				DEVELOPMENT_TEAM = D963K3K43B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88811557CD0EFB2E48AC655F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D963K3K43B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SentinelBot.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SentinelBot";
+			};
+			name = Debug;
+		};
+		931B3374B0DB3ECDC4D23104 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEB251F2ED832F3299BB70E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SentinelBot/Preview Content\"";
+				DEVELOPMENT_TEAM = D963K3K43B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FB6B189163FC6F2EC8A480ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32BF3243C9D0AC392B1CFBA3 /* Build configuration list for PBXProject "SentinelBot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB6B189163FC6F2EC8A480ED /* Debug */,
+				931B3374B0DB3ECDC4D23104 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72736DF7C420B150E65C33CB /* Build configuration list for PBXNativeTarget "SentinelBotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88811557CD0EFB2E48AC655F /* Debug */,
+				113ED8075015BAFA3B7CD074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA3EEBD563C366817E5EF3E5 /* Build configuration list for PBXNativeTarget "SentinelBot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B9F494FD7BD4F9B586B654D /* Debug */,
+				CEB251F2ED832F3299BB70E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F503D9922FA88A03004862E6 /* XCRemoteSwiftPackageReference "CocoaMQTT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/emqx/CocoaMQTT";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F503D9932FA88A03004862E6 /* CocoaMQTT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F503D9922FA88A03004862E6 /* XCRemoteSwiftPackageReference "CocoaMQTT" */;
+			productName = CocoaMQTT;
+		};
+		F503D9952FA88A03004862E6 /* CocoaMQTTWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F503D9922FA88A03004862E6 /* XCRemoteSwiftPackageReference "CocoaMQTT" */;
+			productName = CocoaMQTTWebSocket;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 5B998ECBB648FCAC40794CFF /* Project object */;
+}
