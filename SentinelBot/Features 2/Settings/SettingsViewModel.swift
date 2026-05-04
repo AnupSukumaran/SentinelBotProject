@@ -50,7 +50,7 @@ final class SettingsViewModel: ObservableObject {
                 saveSuccess = false
             }
             Haptic.success()
-            Log.app.info("Broker config saved: \(config.host):\(config.port)")
+            Log.app.info("Broker config saved: \(self.config.host):\(self.config.port)")
         } catch {
             saveError = error.localizedDescription
             Haptic.error()

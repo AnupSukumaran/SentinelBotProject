@@ -34,10 +34,10 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar { saveToolbarButton }
             .onAppear { syncTextFields() }
-            .onChange(of: portText) { _, new in
+            .onChange(of: portText) { new in
                 if let value = UInt16(new) { viewModel.config.port = value }
             }
-            .onChange(of: keepAliveText) { _, new in
+            .onChange(of: keepAliveText) { new in
                 if let value = UInt16(new) { viewModel.config.keepAliveSeconds = value }
             }
             .safeAreaInset(edge: .bottom) {

@@ -32,6 +32,11 @@
 		F503D99A2FA88CBA004862E6 /* CommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9992FA88CBA004862E6 /* CommandService.swift */; };
 		F503D99C2FA88CD5004862E6 /* TelemetryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D99B2FA88CD5004862E6 /* TelemetryService.swift */; };
 		F503D99F2FA88D62004862E6 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D99E2FA88D62004862E6 /* ServiceTests.swift */; };
+		F503D9A42FA8A041004862E6 /* ConnectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9A32FA8A041004862E6 /* ConnectionViewModel.swift */; };
+		F503D9A62FA8A041004862E6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9A52FA8A041004862E6 /* SettingsViewModel.swift */; };
+		F503D9A82FA8A057004862E6 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9A72FA8A057004862E6 /* ConnectionView.swift */; };
+		F503D9AA2FA8A070004862E6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9A92FA8A070004862E6 /* SettingsView.swift */; };
+		F503D9AC2FA8A080004862E6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9AB2FA8A080004862E6 /* RootView.swift */; };
 		F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +77,11 @@
 		F503D9992FA88CBA004862E6 /* CommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandService.swift; sourceTree = "<group>"; };
 		F503D99B2FA88CD5004862E6 /* TelemetryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryService.swift; sourceTree = "<group>"; };
 		F503D99E2FA88D62004862E6 /* ServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+		F503D9A32FA8A041004862E6 /* ConnectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewModel.swift; sourceTree = "<group>"; };
+		F503D9A52FA8A041004862E6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F503D9A72FA8A057004862E6 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
+		F503D9A92FA8A070004862E6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F503D9AB2FA8A080004862E6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +200,7 @@
 				E0E654838EF7C0CD8B631912 /* SentinelBotApp.swift */,
 				15E4DD32F636311D9EDD87A0 /* Resources */,
 				BB0E4519B6329286D8D06DC0 /* Preview Content */,
+				F503D9A02FA8A012004862E6 /* Features 2 */,
 			);
 			path = SentinelBot;
 			sourceTree = "<group>";
@@ -228,6 +239,34 @@
 				F503D99E2FA88D62004862E6 /* ServiceTests.swift */,
 			);
 			path = "Services 2";
+			sourceTree = "<group>";
+		};
+		F503D9A02FA8A012004862E6 /* Features 2 */ = {
+			isa = PBXGroup;
+			children = (
+				F503D9A12FA8A02B004862E6 /* Connection */,
+				F503D9A22FA8A02B004862E6 /* Settings */,
+				F503D9AB2FA8A080004862E6 /* RootView.swift */,
+			);
+			path = "Features 2";
+			sourceTree = "<group>";
+		};
+		F503D9A12FA8A02B004862E6 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				F503D9A32FA8A041004862E6 /* ConnectionViewModel.swift */,
+				F503D9A72FA8A057004862E6 /* ConnectionView.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		F503D9A22FA8A02B004862E6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F503D9A52FA8A041004862E6 /* SettingsViewModel.swift */,
+				F503D9A92FA8A070004862E6 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,10 +373,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				089B824A8CDA02C518093818 /* Color+Theme.swift in Sources */,
+				F503D9AA2FA8A070004862E6 /* SettingsView.swift in Sources */,
 				9CEBC21F503F6AA831166DA4 /* BrokerConfig.swift in Sources */,
+				F503D9A82FA8A057004862E6 /* ConnectionView.swift in Sources */,
 				DF508C6F2F6710F399A017ED /* ConnectionState.swift in Sources */,
 				D8A5BE54CD0FD1EBA5F1F6EC /* RobotCommand.swift in Sources */,
+				F503D9A42FA8A041004862E6 /* ConnectionViewModel.swift in Sources */,
 				D3A22BFC009F4985F9AE39FD /* RobotMode.swift in Sources */,
+				F503D9AC2FA8A080004862E6 /* RootView.swift in Sources */,
 				532C09B838720A46812CDD29 /* SentinelError.swift in Sources */,
 				F075BFE7BA7CC46A8B9BBF80 /* TelemetryPacket.swift in Sources */,
 				F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */,
@@ -352,6 +395,7 @@
 				86340F56B3C85BC47F24480A /* HapticFeedback.swift in Sources */,
 				6B389656024DDD7ADDD0225D /* Logger.swift in Sources */,
 				9EBAE8BD69B4CC5DBB5E2D01 /* SentinelBotApp.swift in Sources */,
+				F503D9A62FA8A041004862E6 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
