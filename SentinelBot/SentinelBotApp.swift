@@ -15,8 +15,7 @@ struct SentinelBotApp: App {
 
     var body: some Scene {
         WindowGroup {
-            // Replaced with a real root view in Phase C.
-            PlaceholderRootView()
+            RootView()
                 .environmentObject(container)
         }
     }
@@ -44,32 +43,6 @@ final class AppContainer: ObservableObject {
         self.telemetryService   = telemetry
         self.persistenceService = persistence
 
-        Log.app.info("AppContainer initialised (Phase B)")
+        Log.app.info("AppContainer initialised (Phase C)")
     }
-}
-
-// MARK: - Phase A/B placeholder root view
-
-private struct PlaceholderRootView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "shield.lefthalf.filled.badge.checkmark")
-                .font(.system(size: 60))
-                .foregroundStyle(Color.Theme.robotPrimary)
-            Text("SentinelBot")
-                .font(.largeTitle.bold())
-            Text("Phase B — services wired")
-                .foregroundStyle(.secondary)
-            Text("Connection & Control views arrive in Phases C–D.")
-                .font(.footnote)
-                .foregroundStyle(.tertiary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-        }
-        .padding()
-    }
-}
-
-#Preview {
-    PlaceholderRootView()
 }
