@@ -26,6 +26,8 @@ final class TelemetryViewModel: ObservableObject {
     @Published private(set) var connectionState: ConnectionState = .disconnected
     /// Non-nil while a distance or battery critical condition is active.
     @Published private(set) var criticalAlert: String?
+    /// Ordered history of received positions (capped at maxHistoryCount).
+    @Published private(set) var positionHistory: [Position] = []
 
     // MARK: Dependencies
 
@@ -33,6 +35,7 @@ final class TelemetryViewModel: ObservableObject {
     private let mqttService: MQTTServiceProtocol
     private var cancellables = Set<AnyCancellable>()
 
+    private let maxHistoryCount = 200
     // Track last alerted state so haptic fires once per transition, not every update
     private var lastDistanceCritical = false
     private var lastBatteryCritical = false
@@ -57,6 +60,17 @@ final class TelemetryViewModel: ObservableObject {
                 guard let self else { return }
                 self.snapshot = snapshot
                 self.evaluateAlerts(snapshot: snapshot)
+                if let pos = snapshot.position {
+                    let isNew = self.positionHistory.last.map {
+                        $0.xMeters != pos.xMeters || $0.yMeters != pos.yMeters
+                    } ?? true
+                    if isNew {
+                        self.positionHistory.append(pos)
+                        if self.positionHistory.count > self.maxHistoryCount {
+                            self.positionHistory.removeFirst()
+                        }
+                    }
+                }
             }
             .store(in: &cancellables)
     }

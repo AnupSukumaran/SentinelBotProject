@@ -128,12 +128,19 @@ final class ControlViewModel: ObservableObject {
         }
     }
 
-    /// Re-enables the UI. Does not publish a broker clear (Phase F).
+    /// Re-enables the UI and clears the retained e-stop from the broker.
     func clearEmergencyStop() {
         isEmergencyStopped = false
         lastLinear = 0
         lastAngular = 0
         Haptic.medium()
+        Task {
+            do {
+                try await commandService.clearEmergencyStop()
+            } catch {
+                commandError = error.localizedDescription
+            }
+        }
         Log.app.info("Emergency stop cleared by user")
     }
 

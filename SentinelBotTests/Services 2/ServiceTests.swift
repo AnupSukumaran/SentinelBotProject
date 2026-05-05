@@ -116,6 +116,19 @@ struct CommandServiceTests {
         #expect(msg.payload.decode(as: EmergencyStopCommand.self) != nil)
     }
 
+    @Test("clearEmergencyStop publishes empty retained payload to estop topic")
+    func clearEmergencyStop() async throws {
+        let (sut, mock) = makeSUT()
+        try await mock.connect(config: .default)
+
+        try await sut.clearEmergencyStop()
+
+        let msg = try #require(mock.publishedMessages.last)
+        #expect(msg.topic    == Constants.Topics.Command.emergencyStop)
+        #expect(msg.retained == true)
+        #expect(msg.payload.isEmpty)
+    }
+
     @Test("publish throws when mqttService reports an error")
     func throwsOnPublishError() async throws {
         let (sut, mock) = makeSUT()

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 @main
 struct SentinelBotApp: App {
@@ -32,6 +33,10 @@ final class AppContainer: ObservableObject {
     let telemetryService: TelemetryServiceProtocol
     let persistenceService: PersistenceServiceProtocol
 
+    /// True while any telemetry reading is in a critical state.
+    /// Drives the Telemetry tab badge in RootView.
+    @Published private(set) var criticalAlertActive = false
+
     init() {
         let mqtt        = MQTTService()
         let commands    = CommandService(mqttService: mqtt)
@@ -43,6 +48,14 @@ final class AppContainer: ObservableObject {
         self.telemetryService   = telemetry
         self.persistenceService = persistence
 
-        Log.app.info("AppContainer initialised (Phase C)")
+        // Watch for critical sensor conditions to drive the tab badge
+        telemetry.snapshotPublisher
+            .map { snap in
+                (snap.distance?.isCritical ?? false) || (snap.battery?.isCritical ?? false)
+            }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$criticalAlertActive)
+
+        Log.app.info("AppContainer initialised (Phase F)")
     }
 }

@@ -40,6 +40,7 @@ struct RootView: View {
                 telemetryService: container.telemetryService,
                 mqttService: container.mqttService
             )
+            .badge(container.criticalAlertActive ? 1 : 0)
             .tabItem {
                 Label("Telemetry", systemImage: "chart.bar.fill")
             }

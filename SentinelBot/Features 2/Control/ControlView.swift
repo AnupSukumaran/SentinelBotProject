@@ -289,6 +289,7 @@ private final class PreviewCommandService: CommandServiceProtocol {
     func sendStop() async throws {}
     func sendModeChange(_ mode: RobotMode) async throws {}
     func sendEmergencyStop() async throws {}
+    func clearEmergencyStop() async throws {}
 }
 
 private final class PreviewMQTTServiceForControl: MQTTServiceProtocol {

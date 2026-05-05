@@ -15,6 +15,7 @@
 //    mode      → QoS 1 (delivery confirmed; mode changes must be acknowledged)
 //    stop      → QoS 1 (confirmed stop)
 //    e-stop    → QoS 2, retained (exactly-once, survives robot reconnects)
+//    e-stop clear → QoS 1, retained empty payload (deletes retained msg on broker)
 //
 
 import Foundation
@@ -91,6 +92,18 @@ final class CommandService: CommandServiceProtocol {
             retained: true
         )
         Log.command.info("EMERGENCY STOP sent")
+    }
+
+    func clearEmergencyStop() async throws {
+        // Publishing an empty (zero-byte) retained payload deletes the broker's
+        // retained copy, so a robot that reconnects won't receive the stale e-stop.
+        try await mqttService.publish(
+            topic: Constants.Topics.Command.emergencyStop,
+            payload: Data(),
+            qos: .atLeastOnce,
+            retained: true
+        )
+        Log.command.info("Emergency stop cleared (retained message deleted from broker)")
     }
 
     // MARK: Private

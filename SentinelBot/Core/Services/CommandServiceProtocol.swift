@@ -25,4 +25,8 @@ protocol CommandServiceProtocol: AnyObject {
     /// Emergency stop. Highest QoS, retained on broker so any subscriber
     /// (including a robot that reconnects) receives it immediately.
     func sendEmergencyStop() async throws
+
+    /// Clears the retained emergency stop from the broker by publishing an
+    /// empty payload to the same topic. Call this when the user resumes.
+    func clearEmergencyStop() async throws
 }
