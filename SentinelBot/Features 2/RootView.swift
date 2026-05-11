@@ -9,7 +9,8 @@
 //    0  Connection  — Phase C  ✅
 //    1  Control     — Phase D  ✅
 //    2  Telemetry   — Phase E  ✅
-//    3  Settings    — Phase C  ✅
+//    3  Camera      — Phase G  ✅
+//    4  Settings    — Phase C  ✅
 //
 
 import SwiftUI
@@ -44,6 +45,11 @@ struct RootView: View {
             .tabItem {
                 Label("Telemetry", systemImage: "chart.bar.fill")
             }
+
+            CameraView()
+                .tabItem {
+                    Label("Camera", systemImage: "camera.fill")
+                }
 
             SettingsView(persistenceService: container.persistenceService)
                 .tabItem {

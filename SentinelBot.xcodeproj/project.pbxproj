@@ -41,6 +41,7 @@
 		F503D9B12FA8A33E004862E6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B02FA8A33E004862E6 /* ControlView.swift */; };
 		F503D9B42FA8A584004862E6 /* TelemetryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B32FA8A584004862E6 /* TelemetryViewModel.swift */; };
 		F503D9B62FA8A5B4004862E6 /* TelemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B52FA8A5B4004862E6 /* TelemetryView.swift */; };
+		F58F302C2FB1B0EF0005CDD6 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F302B2FB1B0EF0005CDD6 /* CameraView.swift */; };
 		F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		F503D9B02FA8A33E004862E6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		F503D9B32FA8A584004862E6 /* TelemetryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryViewModel.swift; sourceTree = "<group>"; };
 		F503D9B52FA8A5B4004862E6 /* TelemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryView.swift; sourceTree = "<group>"; };
+		F58F302B2FB1B0EF0005CDD6 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 				F503D9AB2FA8A080004862E6 /* RootView.swift */,
 				F503D9AD2FA8A307004862E6 /* Control */,
 				F503D9B22FA8A574004862E6 /* Telemetry */,
+				F58F302A2FB1B0EA0005CDD6 /* Camera */,
 			);
 			path = "Features 2";
 			sourceTree = "<group>";
@@ -295,6 +298,14 @@
 				F503D9B52FA8A5B4004862E6 /* TelemetryView.swift */,
 			);
 			path = Telemetry;
+			sourceTree = "<group>";
+		};
+		F58F302A2FB1B0EA0005CDD6 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F58F302B2FB1B0EF0005CDD6 /* CameraView.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,6 +424,7 @@
 				F075BFE7BA7CC46A8B9BBF80 /* TelemetryPacket.swift in Sources */,
 				F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */,
 				8D127977B76ED39CD9657491 /* MQTTServiceProtocol.swift in Sources */,
+				F58F302C2FB1B0EF0005CDD6 /* CameraView.swift in Sources */,
 				F503D99C2FA88CD5004862E6 /* TelemetryService.swift in Sources */,
 				39A7741E60EF56D8B5BA2BBE /* PersistenceService.swift in Sources */,
 				E7108BCB44AA300BEDD6AB85 /* PersistenceServiceProtocol.swift in Sources */,
