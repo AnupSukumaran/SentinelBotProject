@@ -2,7 +2,7 @@ import SwiftUI
 import WebKit
 
 struct CameraView: View {
-    let streamURL = URL(string: "http://192.168.1.180:8080/stream")!
+    let streamURL = URL(string: "http://100.99.219.54:8080/stream")!
 
     var body: some View {
         MJPEGStreamView(url: streamURL)

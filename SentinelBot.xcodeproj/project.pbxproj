@@ -41,6 +41,7 @@
 		F503D9B12FA8A33E004862E6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B02FA8A33E004862E6 /* ControlView.swift */; };
 		F503D9B42FA8A584004862E6 /* TelemetryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B32FA8A584004862E6 /* TelemetryViewModel.swift */; };
 		F503D9B62FA8A5B4004862E6 /* TelemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B52FA8A5B4004862E6 /* TelemetryView.swift */; };
+		F5657E5D2FB5AED800FF09D1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5657E5C2FB5AED800FF09D1 /* Info.plist */; };
 		F58F302C2FB1B0EF0005CDD6 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F302B2FB1B0EF0005CDD6 /* CameraView.swift */; };
 		F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		F503D9B02FA8A33E004862E6 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		F503D9B32FA8A584004862E6 /* TelemetryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryViewModel.swift; sourceTree = "<group>"; };
 		F503D9B52FA8A5B4004862E6 /* TelemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryView.swift; sourceTree = "<group>"; };
+		F5657E5C2FB5AED800FF09D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F58F302B2FB1B0EF0005CDD6 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 				15E4DD32F636311D9EDD87A0 /* Resources */,
 				BB0E4519B6329286D8D06DC0 /* Preview Content */,
 				F503D9A02FA8A012004862E6 /* Features 2 */,
+				F5657E5C2FB5AED800FF09D1 /* Info.plist */,
 			);
 			path = SentinelBot;
 			sourceTree = "<group>";
@@ -493,12 +496,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SentinelBot/Preview Content\"";
 				DEVELOPMENT_TEAM = D963K3K43B;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SentinelBot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -570,12 +569,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SentinelBot/Preview Content\"";
 				DEVELOPMENT_TEAM = D963K3K43B;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SentinelBot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
