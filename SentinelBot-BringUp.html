@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SentinelBot — Bring-Up &amp; Module Test Plan</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --panel-2:#1c232d; --line:#2a3441;
+    --ink:#e6edf3; --ink-dim:#9aa7b4; --ink-faint:#6e7d8c;
+    --accent:#4aa8ff; --pass:#3fb950; --fail:#f85149; --block:#d29922;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    padding:0 0 80px;
+  }
+  header{
+    position:sticky; top:0; z-index:20; background:rgba(14,17,22,.94);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line); padding:18px 28px 14px;
+  }
+  .hrow{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+  h1{font-size:19px; margin:0; letter-spacing:-.2px}
+  .sub{color:var(--ink-faint); font-size:12.5px}
+  .totals{margin-left:auto; display:flex; gap:16px; align-items:center; font-size:12.5px}
+  .tot{display:flex; align-items:center; gap:6px; color:var(--ink-dim)}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .bar{height:5px; background:var(--panel-2); border-radius:3px; overflow:hidden; margin-top:12px; display:flex}
+  .bar i{display:block; height:100%; transition:width .3s ease}
+  main{max-width:1080px; margin:0 auto; padding:26px 28px}
+  .intro{
+    background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--accent);
+    border-radius:8px; padding:16px 18px; margin-bottom:26px; color:var(--ink-dim); font-size:14px;
+  }
+  .intro b{color:var(--ink)}
+  .stage{margin-bottom:14px; border:1px solid var(--line); border-radius:10px; background:var(--panel); overflow:hidden}
+  .stage-head{
+    display:flex; align-items:center; gap:13px; padding:14px 18px; cursor:pointer; user-select:none;
+    background:var(--panel-2); border-bottom:1px solid transparent;
+  }
+  .stage.open .stage-head{border-bottom-color:var(--line)}
+  .chev{color:var(--ink-faint); font-size:11px; width:10px; transition:transform .2s}
+  .stage.open .chev{transform:rotate(90deg)}
+  .stage-num{
+    font:600 11px/1 var(--mono); color:var(--accent); background:rgba(74,168,255,.12);
+    padding:5px 8px; border-radius:5px; letter-spacing:.4px;
+  }
+  .stage-title{font-weight:600; font-size:15px}
+  .stage-goal{color:var(--ink-faint); font-size:12.5px; margin-left:2px}
+  .stage-count{margin-left:auto; font:600 12px/1 var(--mono); color:var(--ink-faint)}
+  .items{display:none; padding:6px 0}
+  .stage.open .items{display:block}
+  .item{display:flex; gap:14px; padding:13px 18px 13px 20px; border-bottom:1px solid rgba(42,52,65,.5)}
+  .item:last-child{border-bottom:none}
+  .item.pass{background:rgba(63,185,80,.045)}
+  .item.fail{background:rgba(248,81,73,.05)}
+  .item.block{background:rgba(210,153,34,.045)}
+  .marks{display:flex; flex-direction:column; gap:4px; padding-top:1px}
+  .mk{
+    width:24px;height:22px;border:1px solid var(--line); background:transparent; border-radius:5px;
+    color:var(--ink-faint); cursor:pointer; font-size:11px; line-height:1; display:flex;
+    align-items:center; justify-content:center; padding:0; transition:all .12s;
+  }
+  .mk:hover{border-color:var(--ink-faint); color:var(--ink-dim)}
+  .mk.on[data-m="pass"]{background:var(--pass); border-color:var(--pass); color:#06210c}
+  .mk.on[data-m="fail"]{background:var(--fail); border-color:var(--fail); color:#2a0705}
+  .mk.on[data-m="block"]{background:var(--block); border-color:var(--block); color:#2a1e02}
+  .body{flex:1; min-width:0}
+  .t{font-weight:600; font-size:14.5px; margin-bottom:3px}
+  .item.pass .t{color:var(--ink-dim)}
+  .how{color:var(--ink-dim); font-size:13.5px; margin-bottom:6px}
+  .exp{color:var(--ink-faint); font-size:13px}
+  .exp b{color:var(--ink-dim); font-weight:600}
+  code{
+    font:12.5px/1.5 var(--mono); background:#0b0f14; border:1px solid var(--line);
+    padding:2px 6px; border-radius:4px; color:#8fd0ff; white-space:pre-wrap; word-break:break-word;
+  }
+  pre{margin:7px 0; padding:10px 12px; background:#0b0f14; border:1px solid var(--line);
+      border-radius:6px; overflow-x:auto}
+  pre code{background:none;border:none;padding:0;color:#8fd0ff;display:block}
+  .tag{
+    display:inline-block; font:600 10px/1 var(--mono); letter-spacing:.5px; text-transform:uppercase;
+    padding:4px 6px; border-radius:4px; margin-left:8px; vertical-align:2px;
+  }
+  .tag.safety{background:rgba(248,81,73,.15); color:#ff8b84}
+  .tag.gotcha{background:rgba(210,153,34,.15); color:#e3b341}
+  .tag.later{background:rgba(139,148,158,.15); color:var(--ink-faint)}
+  .note{
+    width:100%; margin-top:8px; background:#0b0f14; border:1px solid var(--line); border-radius:6px;
+    color:var(--ink); font:13px var(--mono); padding:7px 9px; resize:vertical; min-height:0; height:32px;
+    display:none;
+  }
+  .item.fail .note,.item.block .note,.note.has{display:block}
+  .note:focus{outline:none; border-color:var(--accent)}
+  .actions{display:flex; gap:10px; margin:22px 0 8px; flex-wrap:wrap}
+  button.act{
+    background:var(--panel-2); border:1px solid var(--line); color:var(--ink-dim); border-radius:7px;
+    padding:8px 14px; font-size:13px; cursor:pointer; font-family:inherit;
+  }
+  button.act:hover{border-color:var(--ink-faint); color:var(--ink)}
+  #out{
+    width:100%; margin-top:12px; min-height:120px; background:#0b0f14; border:1px solid var(--line);
+    border-radius:8px; color:var(--ink-dim); font:12.5px/1.6 var(--mono); padding:12px; display:none;
+  }
+  footer{max-width:1080px; margin:30px auto 0; padding:0 28px; color:var(--ink-faint); font-size:12.5px}
+  @media print{
+    body{background:#fff;color:#000} header{position:static}
+    .items{display:block!important} .mk{border-color:#999}
+    .stage,.intro{break-inside:avoid; border-color:#ccc}
+    .actions,#out{display:none}
+    code,pre{background:#f4f4f4;color:#000}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hrow">
+    <h1>SentinelBot — Bring-Up &amp; Module Test Plan</h1>
+    <span class="sub">post-hiatus commissioning · last code change 14 May 2026</span>
+    <div class="totals">
+      <span class="tot"><i class="dot" style="background:var(--pass)"></i><span id="np">0</span> pass</span>
+      <span class="tot"><i class="dot" style="background:var(--fail)"></i><span id="nf">0</span> fail</span>
+      <span class="tot"><i class="dot" style="background:var(--block)"></i><span id="nb">0</span> blocked</span>
+      <span class="tot" style="color:var(--ink-faint)"><span id="nt">0</span> total</span>
+    </div>
+  </div>
+  <div class="bar">
+    <i id="bp" style="background:var(--pass);width:0"></i>
+    <i id="bf" style="background:var(--fail);width:0"></i>
+    <i id="bb" style="background:var(--block);width:0"></i>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <b>Work strictly top to bottom.</b> Each stage assumes the one above it passed — that is the whole
+    point of the ordering. A joystick that does nothing could be a dead motor driver, a wrong topic
+    name, a silent JSON decode failure, or a stale emergency stop still sitting on the broker, and you
+    cannot tell which until the layers below are known-good.
+    <br><br>
+    <b>The wheels stay off the ground</b> until Stage 6. Put the chassis on a book or a box so it can
+    spin freely. Mark each item pass / fail / blocked; failures open a notes box — type what you saw
+    and hit <i>Copy report</i> at the bottom to send the results back to me.
+  </div>
+
+  <div id="stages"></div>
+
+  <div class="actions">
+    <button class="act" onclick="setAll(true)">Expand all</button>
+    <button class="act" onclick="setAll(false)">Collapse all</button>
+    <button class="act" onclick="report()">Copy report</button>
+    <button class="act" onclick="window.print()">Print</button>
+  </div>
+  <textarea id="out" readonly></textarea>
+</main>
+
+<footer>
+  Checks are derived from the app's own contract: topic strings in
+  <code>Core/Utilities/Constants.swift</code>, payload shapes in <code>RobotCommand.swift</code> and
+  <code>TelemetryPacket.swift</code>, and QoS / timing rules in <code>CommandService.swift</code>.
+  Progress is held in the page only — copy the report before closing.
+</footer>
+
+<script>
+const DATA = [
+{
+  n:"00", title:"Safety &amp; pre-power inspection", goal:"before any voltage — three months of sitting is enough to loosen things",
+  items:[
+    {t:"Full visual sweep of every connection", tag:"safety",
+     how:"Go around the chassis and physically tug each Dupont jumper, screw terminal and JST plug.",
+     exp:"Nothing lifts out. Look for green/white crust on terminals, brittle or pinched insulation, and any wire that has worked free of a breadboard rail. Photograph the wiring now — you will want the reference when something moves."},
+    {t:"Confirm common ground between Pi and motor driver", tag:"safety",
+     how:"Multimeter in continuity mode: one probe on a Pi ground pin (6, 9, 14, 20…), the other on the motor driver's GND terminal.",
+     exp:"It beeps. No common ground is the classic cause of a driver that seems dead or twitches randomly — signal levels have no shared reference."},
+    {t:"Check the power rails for a short before connecting the battery", tag:"safety",
+     how:"Battery disconnected. Measure resistance between +V and GND on the motor supply rail, and on the Pi 5 V rail.",
+     exp:"Hundreds of ohms or more. A few ohms or a continuity beep means a short — find it before you apply current."},
+    {t:"Battery / power bank charge state",
+     how:"Charge the power bank fully. If there is a separate Li-ion or LiPo motor pack, measure its resting voltage.",
+     exp:"A LiPo cell below ~3.0 V (or a pack that has sat for three months) may be damaged and should not be charged unattended. 18650s below ~2.5 V per cell: replace, do not revive."},
+    {t:"Chassis up on blocks, wheels free",
+     how:"Prop the robot so both drive wheels spin without touching anything.",
+     exp:"Stays there for every stage up to 6. The first successful motor test is the moment a robot drives off the bench."},
+    {t:"Emergency cutoff within reach", tag:"safety",
+     how:"Decide right now how you kill power fast — an inline switch, or simply which connector you yank.",
+     exp:"You can stop the robot in under a second without hunting for it. The software e-stop is not a substitute; it depends on the very link you are testing."}
+  ]
+},
+{
+  n:"01", title:"Raspberry Pi boots and is reachable", goal:"the computer, before anything attached to it",
+  items:[
+    {t:"Pi powers up and boots to a login",
+     how:"Power the Pi only — motor supply still disconnected. Watch the LEDs.",
+     exp:"Steady red PWR, green ACT flickering during boot. Green blinking in a repeating pattern is a boot error code; a red LED that dims or flickers means the supply is sagging."},
+    {t:"SSH in from the Mac",
+     how:"<pre><code>ssh pi@raspberrypi.local</code></pre>If mDNS does not resolve, find it on the LAN first:<pre><code>ping raspberrypi.local\narp -a | grep -i b8:27:eb</code></pre>",
+     exp:"Shell prompt. Note the LAN IP — you will need it for the broker host in Settings."},
+    {t:"System clock is correct", tag:"gotcha",
+     how:"<pre><code>timedatectl</code></pre>",
+     exp:"Time synchronised: yes, and the clock within a few seconds of real time. <b>This matters more than it looks:</b> every command the app sends carries an ISO-8601 timestamp so the robot can reject stale messages. A Pi with no RTC that boots offline comes up in 1970 and will treat every fresh command as ancient — or accept genuinely stale ones."},
+    {t:"Tailscale is up and the IP still matches the app", tag:"gotcha",
+     how:"<pre><code>tailscale status\ntailscale ip -4</code></pre>",
+     exp:"Reports the node online. <b>Compare against <code>100.99.219.54</code></b> — that address is hardcoded in <code>CameraView.swift</code>. Tailscale IPs are usually stable, but if it has changed, the Camera tab will show a blank page and nothing else will be obviously wrong."},
+    {t:"Disk has room and the filesystem is clean",
+     how:"<pre><code>df -h /\ndmesg | grep -i -E 'error|corrupt' | tail -20</code></pre>",
+     exp:"Several hundred MB free at minimum. SD cards that sat unpowered sometimes come back with read errors — if dmesg is full of I/O errors, image a fresh card before investing hours in debugging phantom faults."},
+    {t:"Inventory what has expired", tag:"later",
+     how:"Note versions now, decide later: <pre><code>lsb_release -a\npython3 -c 'import paho.mqtt; print(paho.mqtt.__version__)'\nmosquitto -h | head -1</code></pre>Also list anything on a trial licence — vision SDKs, a ROS tooling subscription, a cloud key, an Apple developer certificate.",
+     exp:"A written list, nothing more. <b>Do not update anything today.</b> Upgrading ROS or the OS mid-bring-up turns one unknown into fifty. Find out what is expiring, then choose a separate session for it."}
+  ]
+},
+{
+  n:"02", title:"MQTT broker", goal:"the pipe both sides talk through — prove it in isolation",
+  items:[
+    {t:"Mosquitto is running and enabled at boot",
+     how:"<pre><code>systemctl status mosquitto\nsystemctl is-enabled mosquitto</code></pre>",
+     exp:"active (running) and enabled. If it is running but disabled, it will not come back after the untethered reboot in Stage 7 — fix it now with <code>sudo systemctl enable mosquitto</code>."},
+    {t:"Broker accepts a connection from the Mac",
+     how:"On the Mac (<code>brew install mosquitto</code> if needed):<pre><code>mosquitto_sub -h raspberrypi.local -t 'sentinelbot/#' -v</code></pre>",
+     exp:"It connects and sits waiting. <i>Connection refused</i> means mosquitto is bound to localhost only or a listener/allow_anonymous line is missing from <code>/etc/mosquitto/mosquitto.conf</code>. The app defaults to no username or password, so anonymous access must be permitted — or you must fill credentials into Settings."},
+    {t:"Clear any stale retained emergency stop", tag:"gotcha",
+     how:"Watch the subscriber above at the moment you connect. Then, to clear:<pre><code>mosquitto_pub -h raspberrypi.local -t sentinelbot/cmd/estop -r -n</code></pre>",
+     exp:"<b>This is the single most likely reason a revived robot refuses to move.</b> The app publishes e-stop with QoS 2 <i>and the retained flag</i>. If your last session in May ended on an e-stop, the broker has been holding that message ever since and will hand it to the robot the instant the bridge subscribes. The <code>-r -n</code> above publishes an empty retained payload, which deletes it — exactly what the app's own <i>Clear</i> button does."},
+    {t:"Check the retained presence message",
+     how:"In the same subscriber window, look for <code>sentinelbot/presence/robot</code>.",
+     exp:"Likely retained as <code>offline</code> from the last shutdown — that is correct and expected. It should flip to <code>online</code> once the bridge node starts in Stage 3."},
+    {t:"Round-trip a message through the broker",
+     how:"Second terminal:<pre><code>mosquitto_pub -h raspberrypi.local -t sentinelbot/test -m hello</code></pre>",
+     exp:"<code>sentinelbot/test hello</code> appears in the subscriber. The transport is now proven, so any later failure is in the ROS bridge or the app, not the broker."}
+  ]
+},
+{
+  n:"03", title:"ROS bridge node", goal:"the translator between ROS topics and MQTT — and the likeliest place for silent breakage",
+  items:[
+    {t:"Locate the robot-side code and back it up", tag:"safety",
+     how:"<pre><code>find ~ -name 'mqtt_bridge_node.py' 2>/dev/null\ncd &lt;that dir&gt; &amp;&amp; git status</code></pre>",
+     exp:"You find it. <b>If it is not in a git repo, push it to GitHub today</b> — it exists on one SD card that has been sitting in a drawer for three months, and it is the only copy of the contract the iOS app was written against."},
+    {t:"ROS core and the node start without errors",
+     how:"Start your usual launch (<code>roslaunch</code> / <code>ros2 launch</code>), or run the node directly and watch stderr.",
+     exp:"No missing-module tracebacks. Python dependencies installed into a venv or a user site-packages sometimes vanish after an OS package update — <code>paho-mqtt</code> is the usual casualty."},
+    {t:"Bridge connects to the broker and announces itself",
+     how:"Keep <code>mosquitto_sub -t 'sentinelbot/#' -v</code> running while the node starts.",
+     exp:"<code>sentinelbot/presence/robot online</code> appears. If it never does, the node's broker host, port or credentials are wrong — or it is silently swallowing a connect exception."},
+    {t:"Topic strings match the app exactly", tag:"gotcha",
+     how:"Compare the node's strings against <code>Constants.swift</code>: <code>sentinelbot/cmd/{move,mode,estop}</code> inbound, <code>sentinelbot/status/{distance,battery,position,mode}</code> outbound.",
+     exp:"Character-for-character identical. The app subscribes with the wildcard <code>sentinelbot/status/+</code>, so a topic like <code>sentinelbot/status/battery/level</code> — one level too deep — is silently never delivered and produces no error anywhere."},
+    {t:"JSON keys and date format match the Swift models", tag:"gotcha",
+     how:"Capture one real message of each type and compare field-by-field:<pre><code>mosquitto_sub -h raspberrypi.local -t 'sentinelbot/status/+' -v -C 8</code></pre>",
+     exp:"<b>Read this one carefully — it is the highest-value check in the whole plan.</b> The app uses plain Swift <code>Codable</code> with no key conversion, so keys must be exactly <code>distanceMeters</code>, <code>voltageVolts</code>, <code>percentage</code>, <code>isCharging</code>, <code>xMeters</code>, <code>yMeters</code>, <code>headingRadians</code>, <code>mode</code>, <code>timestamp</code>. Not snake_case. Every timestamp must be an ISO-8601 <i>string</i> (<code>2026-08-19T21:30:00Z</code>), never a Unix float. And <code>percentage</code> is a fraction from 0.0 to 1.0, not 0–100 — send 85 and the app shows 8500% and never flags a low battery. <code>TelemetryService.dispatch</code> decodes with <code>try?</code>, so a mismatch logs one warning and shows you an empty screen."},
+    {t:"Node survives a broker restart",
+     how:"<pre><code>sudo systemctl restart mosquitto</code></pre>with the node running.",
+     exp:"The bridge reconnects on its own within a few seconds and presence returns to <code>online</code>. If it dies, wrap it in a systemd unit with <code>Restart=always</code> before Stage 7 — untethered means nobody is there to restart it."}
+  ]
+},
+{
+  n:"04", title:"Modules, one at a time", goal:"each sensor and actuator proven at the pin before it is trusted over the network",
+  items:[
+    {t:"Ultrasonic sensor — raw reading at the Pi",
+     how:"Run your sensor script directly on the Pi, or a short GPIO test. Hold a flat object at a measured 10 cm, 50 cm and 1 m.",
+     exp:"Readings within a few cm of truth and stable when nothing moves. HC-SR04 is only trustworthy from about 2 cm to 4 m. Wild jumps usually mean a 5 V echo pin wired into a 3.3 V GPIO without a divider — which also slowly damages the Pi. Soft surfaces and sharp angles legitimately read as no echo."},
+    {t:"Ultrasonic — reaches the app's thresholds correctly",
+     how:"Watch <code>sentinelbot/status/distance</code> while you walk an object in from 1 m to touching.",
+     exp:"Values in <b>metres</b>, not centimetres. The app treats <code>&lt;0.30</code> as a warning and <code>&lt;0.15</code> as critical, so a node publishing 25 (cm) means the robot thinks every obstacle is 25 metres away and will happily drive into walls."},
+    {t:"Motor driver — each motor individually, no ROS",
+     how:"Wheels off the ground. Drive one channel at a time from a direct GPIO/PWM script.",
+     exp:"Each wheel turns, both directions, and speeds up smoothly with duty cycle. A motor that only buzzes: a dead driver channel, an undervolted motor supply, or a stalled gearbox. Check the driver IC's temperature — too hot to hold means a short or a seized motor."},
+    {t:"Motor direction and mixing are the right way round",
+     how:"Command forward. Then command a left turn.",
+     exp:"Both wheels forward; left turn spins them opposite ways (or slows the left). A wheel wired backwards is a two-second fix now and a baffling hour once the joystick is in the loop."},
+    {t:"Motors respond to /cmd_vel through ROS",
+     how:"<pre><code>rostopic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.2}, angular: {z: 0.0}}'</code></pre>(or the ros2 equivalent).",
+     exp:"Wheels turn. This isolates the ROS layer from the MQTT layer — if raw GPIO works and this does not, the fault is in the motor node, not the bridge."},
+    {t:"Motors respond to an MQTT move command",
+     how:"<pre><code>mosquitto_pub -h raspberrypi.local -t sentinelbot/cmd/move \\\n  -m '{\"linear\":0.3,\"angular\":0.0,\"timestamp\":\"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'\"}'</code></pre>",
+     exp:"Wheels turn briefly, then the watchdog stops them. <code>linear</code> and <code>angular</code> are normalised −1.0 to 1.0 and the bridge scales them to a Twist. The full chain is now proven without the app involved at all."},
+    {t:"Battery monitor — calibrate against a multimeter", tag:"gotcha",
+     how:"Measure actual pack voltage with the meter, then read <code>sentinelbot/status/battery</code>.",
+     exp:"<code>voltageVolts</code> matches within ~0.1 V. If it is off by a constant ratio, the voltage-divider constants in the node need correcting. Confirm <code>percentage</code> is 0.0–1.0 — the app's low/critical warnings at 20% and 10% are what stop you stranding the robot mid-floor."},
+    {t:"Odometry / position updates as the robot moves",
+     how:"Wheels still raised — spin them by hand or under power and watch <code>sentinelbot/status/position</code>.",
+     exp:"<code>xMeters</code>, <code>yMeters</code>, <code>headingRadians</code> change. Heading is in <b>radians</b> (0 = facing +x, π/2 = +y); publishing degrees makes the map in the Telemetry tab spin absurdly. Origin resets wherever the robot powered on — that is by design."},
+    {t:"Camera stream in a browser first",
+     how:"Open <code>http://100.99.219.54:8080/stream</code> (and the LAN IP) in Safari on the Mac.",
+     exp:"Live MJPEG video. Test this in a browser <i>before</i> the app — it separates a camera fault from an app fault. If the service is not running, find what serves it (<code>motion</code>, <code>mjpg-streamer</code>, a Python script) and enable it at boot for Stage 7. Check <code>systemctl status</code> and whether the USB camera enumerates: <code>ls /dev/video*</code>."}
+  ]
+},
+{
+  n:"05", title:"iOS app end to end", goal:"the part that has been sitting in git since May",
+  items:[
+    {t:"Project builds on the current machine",
+     how:"Open <code>SentinelBot.xcodeproj</code>, ⌘B.",
+     exp:"Clean build. You already changed <code>DEVELOPMENT_TEAM</code> to <code>RDRMVW96A6</code> tonight — that change is <b>uncommitted</b>, along with a removed Info.plist build-phase line. Commit it once it builds, so the next machine does not repeat this."},
+    {t:"CocoaMQTT resolves",
+     how:"File → Packages → Resolve Package Versions.",
+     exp:"Resolves without error. It is an SPM dependency and not checked in, so this is the first thing to break on a fresh clone. <code>MQTTService.swift</code> deliberately never names CocoaMQTT's QoS type, so minor version drift should be tolerated."},
+    {t:"Unit tests still pass",
+     how:"⌘U.",
+     exp:"Model and service tests green against <code>MockMQTTService</code>. Free confirmation that encoding and decoding logic is intact before you blame the robot for anything."},
+    {t:"Settings — point the app at the broker", tag:"gotcha",
+     how:"Settings tab → set host and port → Save.",
+     exp:"Saves without a validation error. <b>The default host is <code>raspberrypi.local</code></b>, which resolves on your LAN but generally not over Tailscale — for remote use enter the <code>100.x.y.z</code> address instead. Port 1883, TLS off (the app rejects TLS on 1883 by design)."},
+    {t:"Connection tab reaches CONNACK",
+     how:"Connection tab → Connect.",
+     exp:"Goes Connecting… → Connected. On failure the error text comes straight from the broker: <i>refused</i> means credentials or anonymous access; a timeout means host, port or firewall. Watch the mosquitto log on the Pi at the same time — <code>journalctl -u mosquitto -f</code> — and you will see the app arrive."},
+    {t:"Telemetry tab shows live values",
+     how:"Telemetry tab, robot running.",
+     exp:"Distance, battery, position and mode all populate within a second or two. <b>Any field that stays blank while <code>mosquitto_sub</code> clearly shows data is a decode failure, not a delivery failure</b> — go back to the JSON key check in Stage 3. Filter the Xcode console for the telemetry logger to see the warning."},
+    {t:"Joystick drives the wheels",
+     how:"Wheels still off the ground. Control tab, drag the pad.",
+     exp:"Wheels respond and follow the direction of the pad. The app publishes at 20 Hz while your finger is down, and sends an explicit stop on release."},
+    {t:"Watchdog stops the robot when the app goes away", tag:"safety",
+     how:"Hold the joystick forward, then force-quit the app — or switch your phone to airplane mode mid-drive.",
+     exp:"<b>Wheels stop within about 0.5 s.</b> This is the safety property that matters most on an untethered robot: nothing else prevents a runaway when Wi-Fi drops. If they keep spinning, the watchdog in the bridge node is missing or its timeout is far too long, and everything past here waits until it is fixed."},
+    {t:"Emergency stop, and clearing it",
+     how:"Drive, hit E-STOP. Then tap Clear.",
+     exp:"Motors halt instantly and the joystick greys out. Clear re-enables it. Verify with <code>mosquitto_sub</code> that pressing e-stop leaves a retained message on <code>sentinelbot/cmd/estop</code> and that Clear removes it — an uncleared e-stop is what will make the robot look dead at the start of your next session."},
+    {t:"Mode switch is acknowledged, not assumed",
+     how:"Switch Manual ↔ Autonomous.",
+     exp:"The robot publishes back on <code>sentinelbot/status/mode</code> and the app's mode indicator follows. The round trip is deliberate — it proves the robot honoured the change rather than the UI merely believing it did."},
+    {t:"Camera tab plays the stream",
+     how:"Camera tab.",
+     exp:"Same video as the browser test. Blank screen with a working browser stream means the hardcoded URL in <code>CameraView.swift</code> no longer matches — worth making it configurable in Settings once you are past bring-up."}
+  ]
+},
+{
+  n:"06", title:"On the floor", goal:"first time the wheels touch the ground — small space, phone in hand",
+  items:[
+    {t:"Lower it and drive gently",
+     how:"Clear floor, a few metres, nothing fragile. Small joystick deflections only.",
+     exp:"Drives roughly straight, turns both ways, stops on release. Veering under equal command means mismatched motors or drag — correctable in software later, not now."},
+    {t:"E-stop under real load", tag:"safety",
+     how:"Drive at speed, hit E-STOP.",
+     exp:"Stops immediately. Braking on the bench with wheels unloaded is not the same test as braking with the robot's own momentum behind it."},
+    {t:"Obstacle avoidance in autonomous mode",
+     how:"Switch to Autonomous, put a box in its path.",
+     exp:"It stops or turns before contact. Watch the distance reading in the Telemetry tab as it approaches so you can see whether it is the sensor or the avoidance logic that failed. Keep a finger on E-STOP throughout."},
+    {t:"Behaviour at the edge of Wi-Fi range", tag:"safety",
+     how:"Drive it toward the far edge of coverage, or turn the router off mid-drive.",
+     exp:"It stops on its own via the watchdog and the app shows Reconnecting. The app retries with exponential backoff up to 10 attempts, so it should recover by itself when the link returns — no restart needed."},
+    {t:"Battery under load",
+     how:"Drive continuously for several minutes, watching the Telemetry battery reading.",
+     exp:"Voltage sags under motor load and recovers when stopped — normal. A sag deep enough to reboot the Pi means the Pi and the motors are sharing a supply that cannot cope, which Stage 7 addresses."}
+  ]
+},
+{
+  n:"07", title:"Untethered — the actual goal", goal:"no laptop, no bench supply, everything riding on the chassis",
+  items:[
+    {t:"Measure the real current draw",
+     how:"USB power meter inline with the power bank, or a bench supply with a current readout. Record idle, driving, and driving with the camera streaming.",
+     exp:"A number, in amps. Everything below depends on it. A Pi 4 alone wants 1.5–2 A once the camera is encoding; motors under load can pull several amps in short spikes."},
+    {t:"Confirm the power bank can actually supply it", tag:"gotcha",
+     how:"Check the bank's rated output per port, and whether the total exceeds it.",
+     exp:"Headroom on continuous draw. <b>Two traps specific to power banks:</b> many auto-shut-off when draw drops below ~50–100 mA, so the robot dies while sitting idle — a small constant load or a bank with a 'low-current mode' fixes it. And many cannot sustain their headline amps across two ports at once."},
+    {t:"Give the motors their own supply", tag:"safety",
+     how:"Motor driver fed from its own pack; Pi from the power bank; <b>grounds tied together</b>.",
+     exp:"Motors no longer brown out the Pi. Motor inrush on a shared 5 V rail is the number one cause of a Pi rebooting the instant the robot starts moving — and shared grounds remain mandatory (Stage 0)."},
+    {t:"Plan the deck layout before mounting anything",
+     how:"Lay the parts on the chassis dry, unmounted, and move them around: battery low and central, Pi where its ports stay reachable, camera forward with a clear view, ultrasonic at the front edge unobstructed.",
+     exp:"A layout you can sketch or photograph. Weight low and centred over the wheelbase — a tall or rear-heavy robot wheelies on acceleration and tips on turns. Keep the SD card slot and the Pi's USB-C reachable without disassembly; you will be pulling that card again."},
+    {t:"Mount it so it survives being driven",
+     how:"Standoffs for boards, velcro or a strap for the battery, cable ties with slack at every junction.",
+     exp:"Nothing rattles loose when you shake the chassis by hand. Battery secured, not resting — a pack that slides off mid-drive takes its wires with it. Leave slack at connectors so vibration pulls on the tie, not the pin."},
+    {t:"Nothing fouls the wheels or the sensor",
+     how:"Lift it, spin both wheels through a full rotation by hand. Sight down the ultrasonic's cone.",
+     exp:"No cable near a wheel or gearbox. The HC-SR04 must see nothing but open air ahead — a zip tie or the camera cable in its cone reads as a permanent obstacle at 5 cm, and in autonomous mode the robot will simply refuse to move."},
+    {t:"Everything starts on power-up, with no SSH", tag:"gotcha",
+     how:"systemd units with <code>Restart=always</code> for the bridge node, the ROS stack and the camera server:<pre><code>sudo systemctl enable --now sentinel-bridge\nsudo systemctl enable --now mosquitto</code></pre>",
+     exp:"<b>Reboot the Pi and touch nothing.</b> Within a minute or two the app connects, telemetry flows and the camera plays. Until this passes, the robot is not independent — it just looks like it. Check ordering too: the bridge must tolerate starting before the network is fully up, which is what <code>Restart=always</code> buys you."},
+    {t:"Full cold-start run on battery alone",
+     how:"Everything on the chassis, no mains, no laptop anywhere. Power on, wait, drive from the phone.",
+     exp:"It works end to end. <b>This is the finish line</b> — the moment the project is what you set out to build."},
+    {t:"Record the endurance figure",
+     how:"Drive it around until the battery warning appears, and note the elapsed time.",
+     exp:"A runtime you can plan around, plus confirmation that the low-battery warning at 20% arrives with enough margin to get it back before it stops where it stands."}
+  ]
+}
+];
+
+const state = {};
+const el = document.getElementById('stages');
+
+DATA.forEach((s, si) => {
+  const d = document.createElement('div');
+  d.className = 'stage' + (si === 0 ? ' open' : '');
+  const head = document.createElement('div');
+  head.className = 'stage-head';
+  head.innerHTML = `<span class="chev">▶</span><span class="stage-num">STAGE ${s.n}</span>
+    <span class="stage-title">${s.title}</span><span class="stage-goal">— ${s.goal}</span>
+    <span class="stage-count" id="c${si}"></span>`;
+  head.onclick = () => d.classList.toggle('open');
+  d.appendChild(head);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'items';
+  s.items.forEach((it, ii) => {
+    const key = si + '.' + ii;
+    state[key] = { m: null, note: '', t: it.t, stage: s.n };
+    const row = document.createElement('div');
+    row.className = 'item';
+    row.innerHTML = `
+      <div class="marks">
+        <button class="mk" data-m="pass" title="Working">✓</button>
+        <button class="mk" data-m="fail" title="Broken">✕</button>
+        <button class="mk" data-m="block" title="Blocked / do later">!</button>
+      </div>
+      <div class="body">
+        <div class="t">${it.t}${it.tag ? `<span class="tag ${it.tag}">${
+          it.tag === 'safety' ? 'safety' : it.tag === 'gotcha' ? 'likely culprit' : 'not today'}</span>` : ''}</div>
+        <div class="how">${it.how}</div>
+        <div class="exp"><b>Expect:</b> ${it.exp}</div>
+        <textarea class="note" placeholder="What actually happened…"></textarea>
+      </div>`;
+    row.querySelectorAll('.mk').forEach(b => {
+      b.onclick = () => {
+        const m = b.dataset.m;
+        const now = state[key].m === m ? null : m;
+        state[key].m = now;
+        row.querySelectorAll('.mk').forEach(x => x.classList.toggle('on', x.dataset.m === now));
+        row.className = 'item' + (now ? ' ' + now : '');
+        refresh();
+      };
+    });
+    const nt = row.querySelector('.note');
+    nt.oninput = () => { state[key].note = nt.value; nt.classList.toggle('has', !!nt.value); };
+    wrap.appendChild(row);
+  });
+  d.appendChild(wrap);
+  el.appendChild(d);
+});
+
+function refresh() {
+  let p = 0, f = 0, b = 0, t = 0;
+  DATA.forEach((s, si) => {
+    let sp = 0, st = s.items.length;
+    s.items.forEach((_, ii) => {
+      const m = state[si + '.' + ii].m;
+      t++;
+      if (m === 'pass') { p++; sp++; }
+      else if (m === 'fail') f++;
+      else if (m === 'block') b++;
+    });
+    document.getElementById('c' + si).textContent = sp + '/' + st;
+  });
+  document.getElementById('np').textContent = p;
+  document.getElementById('nf').textContent = f;
+  document.getElementById('nb').textContent = b;
+  document.getElementById('nt').textContent = t;
+  document.getElementById('bp').style.width = (p / t * 100) + '%';
+  document.getElementById('bf').style.width = (f / t * 100) + '%';
+  document.getElementById('bb').style.width = (b / t * 100) + '%';
+}
+
+function setAll(open) {
+  document.querySelectorAll('.stage').forEach(s => s.classList.toggle('open', open));
+}
+
+function report() {
+  const L = ['SentinelBot bring-up — ' + new Date().toLocaleString(), ''];
+  const sym = { pass: '[PASS] ', fail: '[FAIL] ', block: '[BLOCKED] ' };
+  DATA.forEach((s, si) => {
+    const rows = s.items.map((it, ii) => {
+      const v = state[si + '.' + ii];
+      if (!v.m) return null;
+      return '  ' + sym[v.m] + it.t + (v.note ? '\n      note: ' + v.note : '');
+    }).filter(Boolean);
+    if (rows.length) L.push('STAGE ' + s.n + ' — ' + s.title.replace(/&amp;/g, '&'), ...rows, '');
+  });
+  if (L.length === 2) L.push('(nothing marked yet)');
+  const out = document.getElementById('out');
+  out.value = L.join('\n');
+  out.style.display = 'block';
+  out.select();
+  try { document.execCommand('copy'); } catch (e) {}
+}
+
+refresh();
+</script>
+</body>
+</html>

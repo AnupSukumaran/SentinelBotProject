@@ -17,3 +17,6 @@ Pods/
 
 # macOS
 .DS_Store
+
+# scratch — device bridge cannot delete files
+_to_delete/
