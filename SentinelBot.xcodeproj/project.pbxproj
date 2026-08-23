@@ -41,7 +41,6 @@
 		F503D9B12FA8A33E004862E6 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B02FA8A33E004862E6 /* ControlView.swift */; };
 		F503D9B42FA8A584004862E6 /* TelemetryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B32FA8A584004862E6 /* TelemetryViewModel.swift */; };
 		F503D9B62FA8A5B4004862E6 /* TelemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F503D9B52FA8A5B4004862E6 /* TelemetryView.swift */; };
-		F5657E5D2FB5AED800FF09D1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5657E5C2FB5AED800FF09D1 /* Info.plist */; };
 		F58F302C2FB1B0EF0005CDD6 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58F302B2FB1B0EF0005CDD6 /* CameraView.swift */; };
 		F839AF7AD517533D8BCBAB38 /* CommandServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADC956811DB8F8D25CD66A /* CommandServiceProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -494,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SentinelBot/Preview Content\"";
-				DEVELOPMENT_TEAM = D963K3K43B;
+				DEVELOPMENT_TEAM = RDRMVW96A6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SentinelBot/Info.plist;
@@ -504,7 +503,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot1.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -567,7 +566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SentinelBot/Preview Content\"";
-				DEVELOPMENT_TEAM = D963K3K43B;
+				DEVELOPMENT_TEAM = RDRMVW96A6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SentinelBot/Info.plist;
@@ -577,7 +576,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelbot1.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
