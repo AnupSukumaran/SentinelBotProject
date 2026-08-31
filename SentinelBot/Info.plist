@@ -25,6 +25,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_mqtt._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>SentinelBot needs local network access to reach the robot's MQTT broker and camera stream on your Wi-Fi network.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
