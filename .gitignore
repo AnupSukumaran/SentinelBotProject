@@ -20,3 +20,6 @@ Pods/
 
 # scratch — device bridge cannot delete files
 _to_delete/
+
+# one-off backup pulled off the Pi
+sentinel-backup.tgz
