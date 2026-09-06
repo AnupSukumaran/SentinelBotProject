@@ -18,7 +18,7 @@ struct BrokerConfig: Codable, Equatable {
     var keepAliveSeconds: UInt16
 
     static let `default` = BrokerConfig(
-        host: "raspberrypi.local",
+        host: "sentinelbot.local",
         port: 1883,
         username: nil,
         password: nil,
